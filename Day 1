@@ -1,0 +1,43 @@
+#ADVENT OF CODE DAY 1
+
+
+def calculate_fuel(mass_input):
+    mass_input = int(mass_input)
+    fuel = (round((mass_input/3) - 0.3)) - 2
+    return fuel
+#function calculates fuel for each mass
+
+def calculate_fuel_for_one_element(element):
+
+    result_fuel = calculate_fuel(element)
+
+    total_fuel_for_element = calculate_fuel(element)
+
+    while(result_fuel > 8) :
+        result_fuel = calculate_fuel(result_fuel)
+        total_fuel_for_element = total_fuel_for_element + result_fuel
+
+    return total_fuel_for_element
+    
+    
+
+file_object = open("Fuel Counter-Upper.txt", "r")
+#opens file
+
+    
+list_of_inputs = []
+for line in file_object:
+    list_of_inputs.append(line)
+
+#adds each line to a list
+
+
+calculate_fuel_for_one_element(100756)
+
+total_fuel = 0
+
+for element in list_of_inputs:
+    total_fuel = total_fuel + calculate_fuel_for_one_element(element)
+
+print("Total fuel of all inputs: " + str(total_fuel))
+
